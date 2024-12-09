@@ -1,0 +1,22 @@
+
+
+services:
+  backend:
+    build:
+      context: ./backend  # Build the backend service from the ./backend directory
+    ports:
+      - "5001:5001"  # Map port 5001 on the host to port 5000 in the container
+    volumes:
+      - ./backend:/app  # Mount the local ./backend directory into /app in the container
+    env_file:
+      - ./backend/.env  # Specify environment variables from a file
+
+  frontend:
+    build:
+      context: ./frontend  # Build the frontend service from the ./frontend directory
+    ports:
+      - "3000:80"  # Map port 3000 on the host to port 80 in the container
+    volumes:
+      - ./frontend:/app  # Mount the local ./frontend directory into /app in the container
+    env_file:
+      - ./frontend/.env  # Specify environment variables from a file
